@@ -1,0 +1,29 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Support • My App</title>
+  <meta name="robots" content="noindex" />
+  <script>
+    // Detect browser language and redirect to /de/ or /en/
+    (function(){
+      try {
+        // If user manually chose language before, respect that
+        var saved = localStorage.getItem('preferred_lang');
+        if (saved === 'de') { location.href = '/de/'; return; }
+        if (saved === 'en') { location.href = '/en/'; return; }
+
+        var lang = (navigator.language || navigator.userLanguage || 'en').toLowerCase();
+        if (lang.startsWith('de')) { location.href = '/de/'; } else { location.href = '/en/'; }
+      } catch(e){ /* fallback */ location.href = '/en/'; }
+    })();
+  </script>
+</head>
+<body>
+  <noscript>
+    <p>JavaScript is required for automatic language selection. Please choose: <a href="/de/">Deutsch</a> | <a href="/en/">English</a></p>
+  </noscript>
+</body>
+</html>
